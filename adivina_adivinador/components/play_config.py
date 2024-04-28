@@ -1,58 +1,17 @@
 import reflex as rx
 # import asyncio
+import adivina_adivinador.constants as constants
 
 
-class CountState(rx.State):
-    count: int = 0
+class PlayConfigPanel(rx.State):
+    players: str = constants.default_players
+    category: str = constants.default_category
 
-    def increment(self):
-        self.count += 1
+    def set_players(self, value: str):
+        self.players = value
 
-    def decrement(self):
-        self.count -= 1
-
-
-# class TimerState(rx.State):
-#     count: int = 120  # Starting value for the countdown
-#     running: bool = False  # Estado para gestionar si el contador está activo
-
-#     async def countdown(self):
-#         if not self.running:  # Solo inicia si no está ya corriendo
-#             self.running = True
-
-#         while self.count > 0 and self.running:
-#             await asyncio.sleep(1)  # Espera 1 segundo
-#             self.count -= 1  # Decrementa el contador
-#             yield  # Actualiza la UI
-#         self.running = False
-
-#     def reset_timer(self):
-#         self.running = False
-
-
-def counter():
-    return rx.flex(
-        rx.button(
-            "Disminuir",
-            color_scheme="red",
-            on_click=CountState.decrement,
-        ),
-        rx.heading(CountState.count),
-        rx.button(
-            "Aumentar",
-            color_scheme="grass",
-            on_click=CountState.increment,
-        ),
-        spacing="3",
-    )
-
-
-# def timer_example():
-#     return rx.cond(
-#         TimerState.running,
-#         rx.button("Reiniciar", on_click=TimerState.reset_timer, size="4"),
-#         rx.button("Jugar", on_click=TimerState.countdown, size="4")
-#     )
+    def set_category(self, value: str):
+        self.category = value
 
 
 def play_config_panel() -> rx.Component:
@@ -68,30 +27,37 @@ def play_config_panel() -> rx.Component:
                     rx.table.header(
                         rx.table.row(
                             rx.table.column_header_cell(
-                                "Full Name"
+                                "Parametro"
                             ),
                             rx.table.column_header_cell(
-                                "Email"
-                            ),
-                            rx.table.column_header_cell(
-                                "Group"
+                                "Valor"
                             ),
                         ),
                     ),
                     rx.table.body(
                         rx.table.row(
                             rx.table.row_header_cell(
-                                "Danilo Rosa"
+                                "Cantidad de Jugadores"
                             ),
-                            rx.table.cell("danilo@example.com"),
-                            rx.table.cell("Developer"),
+                            rx.table.cell(
+                                rx.select(
+                                    constants.PLAYERS,
+                                    default_value=constants.default_players,
+                                    on_change=PlayConfigPanel.set_players
+                                )
+                            ),
                         ),
                         rx.table.row(
                             rx.table.row_header_cell(
-                                "Zahra Ambessa"
+                                "Categoria"
                             ),
-                            rx.table.cell("zahra@example.com"),
-                            rx.table.cell("Admin"),
+                            rx.table.cell(
+                                rx.select(
+                                    constants.CATEGORIES,
+                                    default_value=constants.default_category,
+                                    on_change=PlayConfigPanel.set_category
+                                )
+                            ),
                         ),
                     ),
                 ),
@@ -102,13 +68,13 @@ def play_config_panel() -> rx.Component:
             rx.flex(
                 rx.dialog.close(
                     rx.button(
-                        "Close",
+                        "Cerrar",
                         variant="soft",
                         color_scheme="gray",
                     ),
                 ),
                 spacing="3",
                 justify="end",
-            ),
+            )
         ),
     )

@@ -16,3 +16,12 @@ lista_palabras = ['cuchillo',
                   'huevo',
                   'pan',
                   'carne']
+
+
+# Categoires
+CATEGORIES = ['Hogar', "Aleatorio"]
+default_category = CATEGORIES[0]
+
+# Players
+PLAYERS = [str(i) for i in range(2, 7)]
+default_players = PLAYERS[1]

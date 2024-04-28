@@ -3,8 +3,7 @@ from adivina_adivinador.routes import Route
 import adivina_adivinador.utils as utils
 from adivina_adivinador.components.navbar import navbar
 from adivina_adivinador.styles.styles import Spacing, Size
-# from adivina_adivinador.components.play_config import play_config_panel, timer_example, TimerState
-from adivina_adivinador.components.play_config import play_config_panel
+from adivina_adivinador.components.play_config import play_config_panel, PlayConfigPanel
 import asyncio
 
 
@@ -87,5 +86,7 @@ def play() -> rx.Component:
             padding=Size.LARGE.value
         ),
         rx.heading(MyTaskState.counter, size="8"),
-
+        rx.divider(size="4"),
+        rx.text(PlayConfigPanel.players, size="2"),
+        rx.text(PlayConfigPanel.category, size="2"),
     )
