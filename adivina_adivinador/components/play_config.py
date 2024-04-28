@@ -57,7 +57,7 @@ def counter():
 
 def play_config_panel() -> rx.Component:
     return rx.dialog.root(
-        rx.dialog.trigger(rx.button("Configuración de la Partida", size="4")),
+        rx.dialog.trigger(rx.button(rx.icon("cog"), size="4")),
         rx.dialog.content(
             rx.dialog.title("Configuración de la Partida"),
             rx.dialog.description(

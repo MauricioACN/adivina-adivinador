@@ -27,7 +27,7 @@ class MyTaskState(rx.State):
         while True:
             async with self:
                 if self.counter <= 0:
-                    self.running = False
+                    self.clear_counter()
                 if not self.running:
                     self._n_tasks -= 1
                     return
@@ -49,17 +49,17 @@ class MyTaskState(rx.State):
 def timer_example():
     return rx.flex(
         rx.button(
-            rx.cond(~MyTaskState.running, "Start", "Stop"),
+            rx.cond(~MyTaskState.running, "Jugar", "Detener"),
             on_click=MyTaskState.toggle_running,
             size="4"
         ),
-        rx.button(
-            "Reset",
-            on_click=MyTaskState.clear_counter,
-            size="4"
-        ),
-        spacing=Spacing.LARGE.value,
-        direction="column",
+        # rx.button(
+        #     "Reiniciar",
+        #     on_click=MyTaskState.clear_counter,
+        #     size="4"
+        # ),
+        spacing=Spacing.SMALL.value,
+        # direction="column",
         widht="100%",
         max_width="100%"
     )
@@ -79,9 +79,9 @@ def play() -> rx.Component:
         rx.flex(
             play_config_panel(),
             timer_example(),
-            direction="column",
-            spacing=Spacing.LARGE.value,
-            max_width="100%",
+            # direction="row",
+            spacing=Spacing.SMALL.value,
+            # max_width="100%",
             width="100%",
             margin_y=Size.LARGE.value,
             padding=Size.LARGE.value
