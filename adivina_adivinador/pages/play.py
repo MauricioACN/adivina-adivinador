@@ -83,10 +83,14 @@ def play() -> rx.Component:
             # max_width="100%",
             width="100%",
             margin_y=Size.LARGE.value,
+            padding=Size.LARGE.value,
+            justify="center"
+        ),
+        rx.center(
+            rx.heading(MyTaskState.counter, size="8"),
             padding=Size.LARGE.value
         ),
-        rx.heading(MyTaskState.counter, size="8"),
         rx.divider(size="4"),
-        rx.text(PlayConfigPanel.players, size="2"),
-        rx.text(PlayConfigPanel.category, size="2"),
+        # rx.text(PlayConfigPanel.players, size="2"),
+        # rx.text(PlayConfigPanel.category, size="2"),
     )

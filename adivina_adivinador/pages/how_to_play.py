@@ -33,7 +33,7 @@ def how_to_play() -> rx.Component:
                     rx.list.item(
                         "Intenta dar pistas que no sean tan obvias, pero tampoco tan difíciles. Tip: usa situaciones donde se use el objeto."),
                     rx.list.item(
-                        "Si la persona adivina correctamente, le pasas el celular a la persona que está al lado tuyo. Verás una instrucción indicando hacia qué lado debes pasarlo."),
+                        "Si la persona adivina correctamente, Verás una instrucción indicando hacia qué lado debes pasar el celular."),
                     rx.list.item(
                         "Si no adivinan la palabra, simplemente toca la pantalla para cambiarla. Una nueva palabra aparecerá y deberás dar nuevas pistas para que adivine."),
                     rx.list.item(
