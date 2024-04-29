@@ -5,5 +5,6 @@ config = rx.Config(
     cors_allow_origins=[
         "http://localhost:3000",
         "https://juego.alejocano.com",
+        "https://adivina-adivinador.vercel.app"
     ],
 )
